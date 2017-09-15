@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('machines','MachineController');
+
+Route::post('service-request/mailer', 'ServiceRequestController@mailer');

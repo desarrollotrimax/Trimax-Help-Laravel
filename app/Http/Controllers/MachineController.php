@@ -39,16 +39,17 @@ class MachineController extends Controller
 
         if ( is_array($data['Output']) ){
             DB::statement("CALL set_inactive_machines();");
-
+            $counter =0;
             foreach ( $data['Output'] as $machine) {
                 DB::statement('CALL machine_manager("'.
                     $machine['SERIE'].'", "'.
                     $machine['MODELO'].'", "'.
                     title_case($machine['TIPO']).'");'
                 );
+                $counter +=1;
             }
 
         }
-        dd('Se ha completado la actualización de máquinas sin NINGÚN problema. ;)');
+        dd('Se ha completado la actualización de '.$counter.' máquinas sin NINGÚN problema. ;)');
     }
 }
